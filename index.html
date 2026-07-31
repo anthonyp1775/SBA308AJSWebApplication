@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scouter — Dragon Ball Combat Index</title>
+  <meta name="description" content="Browse, filter, and scan every fighter in the Dragon Ball universe." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#results">Skip to results</a>
+
+  <header class="masthead">
+    <div class="masthead__inner">
+      <div class="lockup">
+        <span class="four-star" aria-hidden="true">
+          <i></i><i></i><i></i><i></i>
+        </span>
+        <span class="lockup__text">
+          <span class="lockup__title">Scouter</span>
+          <span class="lockup__sub">Dragon Ball combat index</span>
+        </span>
+      </div>
+      <p class="masthead__meta" data-role="masthead-count">Powering up&hellip;</p>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO SCAN ============ -->
+    <section class="scan" aria-labelledby="scan-title">
+      <div class="scan__panel">
+        <div class="scan__readout">
+          <p class="scan__eyebrow">Scouter feed <span class="blip" aria-hidden="true"></span></p>
+          <h1 class="scan__name" id="scan-title" data-role="scan-name">Acquiring target</h1>
+          <dl class="scan__stats">
+            <div>
+              <dt>Power reading</dt>
+              <dd class="scan__ki" data-role="scan-ki">-----</dd>
+            </div>
+            <div>
+              <dt>Race</dt>
+              <dd data-role="scan-race">&mdash;</dd>
+            </div>
+            <div>
+              <dt>Allegiance</dt>
+              <dd data-role="scan-affiliation">&mdash;</dd>
+            </div>
+          </dl>
+          <p class="scan__bio" data-role="scan-bio">Calibrating lenses...</p>
+          <div class="scan__actions">
+            <button class="btn btn--primary" type="button" data-role="scan-open">Open full file</button>
+            <button class="btn" type="button" data-role="scan-again">Scan another fighter</button>
+          </div>
+        </div>
+        <div class="scan__viewport" data-role="scan-viewport">
+          <span class="scan__burst" aria-hidden="true"></span>
+          <span class="reticle" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <img class="scan__art" data-role="scan-art" alt="" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONSOLE CONTROLS ============ -->
+    <section class="console" aria-label="Search and filter fighters">
+      <div class="console__row">
+        <div class="field field--grow">
+          <label for="search">Search by name</label>
+          <input id="search" type="search" placeholder="Goku, Piccolo, Frieza&hellip;" autocomplete="off" data-role="search" />
+        </div>
+        <div class="field">
+          <label for="filter-race">Race</label>
+          <select id="filter-race" data-role="filter-race">
+            <option value="">All races</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="filter-affiliation">Allegiance</label>
+          <select id="filter-affiliation" data-role="filter-affiliation">
+            <option value="">All allegiances</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="filter-gender">Gender</label>
+          <select id="filter-gender" data-role="filter-gender">
+            <option value="">Any</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Unknown">Unknown</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="sort">Sort</label>
+          <select id="sort" data-role="sort">
+            <option value="default">Archive order</option>
+            <option value="ki-desc">Power: high to low</option>
+            <option value="ki-asc">Power: low to high</option>
+            <option value="name-asc">Name: A to Z</option>
+            <option value="name-desc">Name: Z to A</option>
+          </select>
+        </div>
+      </div>
+      <div class="console__row console__row--tight">
+        <button class="toggle" type="button" data-role="favorites-toggle" aria-pressed="false">
+          <span class="toggle__star" aria-hidden="true">★</span>
+          Saved only <span class="toggle__count" data-role="favorites-count">0</span>
+        </button>
+        <button class="btn btn--ghost" type="button" data-role="reset">Clear filters</button>
+        <p class="console__status" data-role="status" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <!-- ============ RESULTS ============ -->
+    <section id="results" class="results" aria-label="Fighters">
+      <div class="grid" data-role="grid"></div>
+      <div class="empty" data-role="empty" hidden></div>
+      <nav class="pager" data-role="pager" aria-label="Pagination" hidden></nav>
+    </section>
+  </main>
+
+  <footer class="colophon">
+    <p>Built with the free <a href="https://web.dragonball-api.com/documentation" target="_blank" rel="noopener">Dragon Ball API</a>. Fan project, no affiliation.</p>
+  </footer>
+
+  <!-- ============ DETAIL DIALOG ============ -->
+  <dialog class="file" data-role="dialog" aria-labelledby="file-name">
+    <div class="file__body" data-role="dialog-body"></div>
+    <button class="file__close" type="button" data-role="dialog-close" aria-label="Close file">✕</button>
+  </dialog>
+
+  <div class="toast" data-role="toast" role="alert" hidden></div>
+</body>
+</html>
